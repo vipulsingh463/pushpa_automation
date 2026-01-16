@@ -1,0 +1,32 @@
+trigger: 
+- main
+
+pool: infy agent
+
+variables: 
+  palakpanner: '$(System.DefaultWorkingDirectory)/Environment'
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(palakpanner)'
+    backendServiceArm: 'infy practice'
+    backendAzureRmResourceGroupName: 'agnitypartners'
+    backendAzureRmStorageAccountName: 'agnity'
+    backendAzureRmContainerName: 'tfstate'
+    backendAzureRmKey: 'agnity.tfstate'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'custom'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/Environment'
+    commandOptions: 'fmt'
+    outputTo: 'console'
+    environmentServiceNameAzureRM: 'infy practice'
