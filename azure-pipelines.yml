@@ -15,7 +15,7 @@ steps:
   inputs:
     provider: 'azurerm'
     command: 'init'
-    workingDirectory: $palakpanner
+    workingDirectory: '$(palakpanner)'
     backendServiceArm: 'infy practice'
     backendAzureRmResourceGroupName: 'agnitypartners'
     backendAzureRmStorageAccountName: 'agnity'
