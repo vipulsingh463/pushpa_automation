@@ -1,8 +1,8 @@
 terraform {
        backend "azurerm" {
-       resource_group_name = "agnitypartners"
-       storage_account_name = "agnity"
-       container_name       = "tfstate"         
+       resource_group_name = "truboard"
+       storage_account_name = "agnitycomm"
+       container_name       = "truagnity"         
        key                  = "agnity.tfstate"
      }
     required_providers {
